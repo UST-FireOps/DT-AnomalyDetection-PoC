@@ -67,8 +67,8 @@ if __name__ == "__main__":
 
     # start data transformation
     transformationObj = DataTransformation()
-    transformationObj.dataTransformationMethod(cpu_avg_data)
+    total_batches, batch_file_dir = transformationObj.dataTransformationMethod(cpu_avg_data)
 
     # start anomaly method training
     anomalyObj = anomalyTrainer()
-    anomalyObj.anomalyTrainerMethod()
+    anomalyObj.anomalyTrainerMethod(total_batches, batch_file_dir)
