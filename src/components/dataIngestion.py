@@ -3,12 +3,14 @@ import os
 import pandas
 import csv
 from flatten_json import flatten
+import sys
 
 from datetime import datetime
 
 from dataclasses import dataclass
 
 from src.logger import logging
+from src.exception import CustomException
 
 from src.components.dataTransformation import DataTransformation
 from src.components.anomalyTrainer import anomalyTrainer
@@ -58,7 +60,7 @@ class DataIngestion:
 
                 
         except Exception as e:
-            print(e)
+            raise CustomException(sys, e)
 
 if __name__ == "__main__":
     # start data ingestion

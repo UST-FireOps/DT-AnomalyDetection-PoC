@@ -3,9 +3,12 @@ import pandas as pd
 import numpy as np
 import scipy
 import scipy.stats as ss
+import sys
 
 
 from src.logger import logging
+from src.exception import CustomException
+
 from datetime import datetime
 
 class statAnomalyTrainerConfig:
@@ -63,7 +66,7 @@ class anomalyTrainer:
       
             
         except Exception as e:
-            print(e)
+            raise CustomException(e, sys) 
 
 
 

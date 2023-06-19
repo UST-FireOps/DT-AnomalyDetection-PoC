@@ -1,7 +1,10 @@
 import pandas as pd
 import os
+import sys
 
 from src.logger import logging
+from src.exception import CustomException
+
 from datetime import datetime
 from dataclasses import dataclass
 
@@ -51,5 +54,5 @@ class DataTransformation:
             
 
         except Exception as e:
-            print(e)
+            raise CustomException(sys, e)
 
