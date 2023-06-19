@@ -28,6 +28,10 @@ class DataTransformation:
             for i,g in cpu_df.groupby(['Host Name']):
                 g['@timestamp'] = pd.to_datetime(g['@timestamp'], format='%Y-%m-%dT%H:%M:%S.%f')
                 g['CPU Avg'] = g['CPU Avg'].astype(float)
+                # find the Null values
+                if g['CPU Avg'].isnull().values.any():
+                    logging.info("find and remove the NaN value from {}".format(i))
+                    g['CPU Avg'].fillna((g['CPU Avg'].mean()), inplace=True)
                 g['Host Name'] = g['Host Name'].astype(str)
                 g['Host OS'] = g['Host OS'].astype(str)
                 g.sort_values(by=['@timestamp'])
